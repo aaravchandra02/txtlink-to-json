@@ -1,3 +1,9 @@
+"""
+ * @author Aarav Chandra
+ * @create date 2020-07-22 00:28:11
+ * @modify date 2020-07-22 00:28:11
+ """
+
 import json
 import pprint
 
@@ -5,7 +11,9 @@ import pprint
 with open('input_original.ini') as inp:
     data = inp.readlines()
 
+final_dictionary = {}
 final_list = []
+
 for i in data:
     every_data = i.split('|')
     # Removing '\n' if present in the end.
@@ -15,8 +23,6 @@ for i in data:
     # Removing all the data except the ones with a weblink.
     if (every_data[-1].startswith("https://")):
         final_list.append(every_data)
-
-final_dictionary = {}
 
 for path in final_list:
     current_level = final_dictionary
@@ -30,6 +36,6 @@ print()
 pprint.pprint(final_dictionary, depth=10)
 print()
 
-
+# Writing the output in JSON format to a format.
 with open('op.json', 'w') as op:
     json.dump(final_dictionary, op)
